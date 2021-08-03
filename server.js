@@ -9,6 +9,8 @@ require('dotenv').config();
 const PORT = process.env.PORT
 
 const cors = require('cors');
+server.use(cors());
+
 
 class Forecast {
     constructor(value) {
@@ -33,7 +35,7 @@ server.get('/weather', (req, res) => {
         res.send(forecastArr);
     }
     catch (e) {
-        res.status(404).send('No Data for this City');
+        res.status(500).send('No Data for this City');
      }
 });
 
