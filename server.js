@@ -33,17 +33,16 @@ server.get('/weather', async (req, res) => {
 });
 
 server.get('/movies', (req, res) => {
-    let searchQuery = req.query.searchQuery
+    let city = req.query.query
   
-    let moviesUrl = `https://api.themoviedb.org/3/search/movie?api_key=${MOVIES_API_KEY}&query=${searchQuery}`
-    let moviesResp = axios.get(moviesUrl).then(response => {
+    let moviesUrl = `https://api.themoviedb.org/3/search/movie?api_key=${MOVIES_API_KEY}&query=${city}`
+    axios.get(moviesUrl).then(response => {
     let  movies = response.data.results;
   
       let callMovies = movies.map(el => {
         return new Movies(el);
       });
-  
-      res.json(callMovies);
+      res.send(callMovies);
       
     }).catch(error=>res.send({message:error.message}));
   });
