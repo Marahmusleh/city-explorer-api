@@ -1,10 +1,8 @@
 'use strict'
 
 const express = require('express');
-const axios = require('axios')
 const server = express();
 
-// const weatherData = require('./data/weather.json');
 
 require('dotenv').config();
 const PORT = process.env.PORT
